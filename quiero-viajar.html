@@ -580,12 +580,38 @@
 
       const div = document.createElement('div');
       div.className = 'rdp-msg ' + classes;
-      div.innerHTML = rdpParseMarkdown(text);
       wrapper.appendChild(div);
       msgs.appendChild(wrapper);
       msgs.scrollTop = msgs.scrollHeight;
-      rdpSaveMessages();
+
+      const isTyping = classes.includes('rdp-bot') && !classes.includes('rdp-typing');
+      if (isTyping) {
+        rdpTypeMessage(div, text);
+      } else {
+        div.innerHTML = rdpParseMarkdown(text);
+        rdpSaveMessages();
+      }
       return wrapper;
+    }
+
+    function rdpTypeMessage(div, text) {
+      const words = text.split(' ');
+      const speed = words.length > 150 ? 12 : words.length > 50 ? 20 : 28;
+      let i = 0;
+      const msgs = document.getElementById('rdp-messages');
+
+      function typeNext() {
+        if (i < words.length) {
+          div.textContent += (i > 0 ? ' ' : '') + words[i];
+          i++;
+          msgs.scrollTop = msgs.scrollHeight;
+          setTimeout(typeNext, speed);
+        } else {
+          div.innerHTML = rdpParseMarkdown(text);
+          rdpSaveMessages();
+        }
+      }
+      typeNext();
     }
 
     function rdpParseMarkdown(text) {
