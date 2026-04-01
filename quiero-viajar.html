@@ -337,6 +337,7 @@
   </script>
 
 
+
   <!-- ── Chat Widget ── -->
   <div id="rdp-widget">
     <button id="rdp-toggle" onclick="rdpToggle()">
@@ -347,7 +348,7 @@
       <div id="rdp-header">
         <div style="display:flex;align-items:center;gap:10px;">
           <div id="rdp-avatar">
-            <img src="https://i.imgur.com/RFEhIRE.png" style="width:30px;height:30px;object-fit:contain;" />
+            <img src="https://i.imgur.com/RFEhIRE.png" />
           </div>
           <div>
             <div style="font-weight:700;font-size:14px;">Ruta de Papel Agent</div>
@@ -360,7 +361,7 @@
       <div id="rdp-messages">
         <div style="display:flex;align-items:flex-end;gap:8px;">
           <div class="rdp-icon-wrap">
-            <img src="https://i.imgur.com/RFEhIRE.png" style="width:18px;height:18px;object-fit:contain;" />
+            <img src="https://i.imgur.com/RFEhIRE.png" />
           </div>
           <div class="rdp-msg rdp-bot">¡Hola! Soy el asistente de Ruta de Papel. ¿En qué puedo ayudarte?</div>
         </div>
@@ -411,13 +412,13 @@
     #rdp-widget { position: fixed; bottom: 24px; right: 24px; z-index: 9999; font-family: sans-serif; }
     #rdp-toggle { width: 60px; height: 60px; border-radius: 50%; background: #1e3040; border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; margin-left: auto; transition: transform 0.2s; padding: 0; box-sizing: border-box; overflow: hidden; }
     #rdp-toggle:hover { transform: scale(1.08); }
-    #rdp-logo-btn { width: 100%; height: 100%; object-fit: cover; }
+    #rdp-logo-btn { width: 100%; height: 100%; object-fit: cover; display: block; }
     #rdp-box { display: none; flex-direction: column; width: 340px; height: 530px; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.2); overflow: hidden; margin-bottom: 12px; }
     #rdp-header { background: #2596be; color: white; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; }
-    #rdp-avatar { width: 38px; height: 38px; border-radius: 50%; background: #1e3040; display: flex; align-items: center; justify-content: center; flex-shrink: 0; padding: 0; box-sizing: border-box; overflow: hidden; }
-    #rdp-avatar img { width: 100%; height: 100%; object-fit: cover; }
-    .rdp-icon-wrap { width: 28px; height: 28px; border-radius: 50%; background: #1e3040; display: flex; align-items: center; justify-content: center; flex-shrink: 0; padding: 0; box-sizing: border-box; overflow: hidden; }
-    .rdp-icon-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    #rdp-avatar { width: 42px; height: 42px; border-radius: 50%; background: #1e3040; flex-shrink: 0; overflow: hidden; }
+    #rdp-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .rdp-icon-wrap { width: 30px; height: 30px; border-radius: 50%; background: #1e3040; flex-shrink: 0; overflow: hidden; }
+    .rdp-icon-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
     #rdp-messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
     .rdp-msg { max-width: 78%; padding: 10px 14px; border-radius: 12px; font-size: 14px; line-height: 1.5; }
     .rdp-bot { background: #f0f7fb; color: #222; align-self: flex-start; border-bottom-left-radius: 4px; }
@@ -533,7 +534,7 @@
       if (withIcon && classes.includes('rdp-bot')) {
         const icon = document.createElement('div');
         icon.className = 'rdp-icon-wrap';
-        icon.innerHTML = '<img src="https://i.imgur.com/RFEhIRE.png" style="width:18px;height:18px;object-fit:contain;" />';
+        icon.innerHTML = '<img src="https://i.imgur.com/RFEhIRE.png" />';
         wrapper.appendChild(icon);
       }
 
