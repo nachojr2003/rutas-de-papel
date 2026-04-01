@@ -367,54 +367,50 @@
         </div>
       </div>
 
-      <div id="rdp-form" style="display:none;padding:16px;border-top:1px solid #eee;background:#f9f9f9;overflow-y:auto;flex:1;">
-        <p style="font-size:13px;font-weight:600;color:#333;margin:0 0 12px;">Dejanos tus datos y te contactamos:</p>
-
-        <input class="rdp-field" id="f-nombre" type="text" placeholder="Tu nombre *" />
-        <input class="rdp-field" id="f-email" type="email" placeholder="Tu email *" />
-
-        <div style="display:flex;gap:6px;margin-bottom:8px;">
-          <select id="f-prefijo" class="rdp-field" style="width:110px;margin-bottom:0;flex-shrink:0;">
-            <option value="+34">🇪🇸 +34</option>
-            <option value="+52">🇲🇽 +52</option>
-            <option value="+54">🇦🇷 +54</option>
-            <option value="+57">🇨🇴 +57</option>
-            <option value="+56">🇨🇱 +56</option>
-            <option value="+51">🇵🇪 +51</option>
-            <option value="+58">🇻🇪 +58</option>
-            <option value="+593">🇪🇨 +593</option>
-            <option value="+598">🇺🇾 +598</option>
-            <option value="+595">🇵🇾 +595</option>
-            <option value="+591">🇧🇴 +591</option>
-            <option value="+1">🇺🇸 +1</option>
-            <option value="+44">🇬🇧 +44</option>
-            <option value="+33">🇫🇷 +33</option>
-            <option value="+49">🇩🇪 +49</option>
+      <div id="rdp-form" style="display:none;flex-direction:column;flex:1;overflow:hidden;">
+        <div id="rdp-form-fields">
+          <p style="font-size:13px;font-weight:600;color:#333;margin:0 0 12px;">Dejanos tus datos y te contactamos:</p>
+          <input class="rdp-field" id="f-nombre" type="text" placeholder="Tu nombre *" />
+          <input class="rdp-field" id="f-email" type="email" placeholder="Tu email *" />
+          <div style="display:flex;gap:6px;margin-bottom:8px;">
+            <select id="f-prefijo" class="rdp-field" style="width:110px;margin-bottom:0;flex-shrink:0;">
+              <option value="+34">🇪🇸 +34</option>
+              <option value="+52">🇲🇽 +52</option>
+              <option value="+54">🇦🇷 +54</option>
+              <option value="+57">🇨🇴 +57</option>
+              <option value="+56">🇨🇱 +56</option>
+              <option value="+51">🇵🇪 +51</option>
+              <option value="+58">🇻🇪 +58</option>
+              <option value="+593">🇪🇨 +593</option>
+              <option value="+598">🇺🇾 +598</option>
+              <option value="+595">🇵🇾 +595</option>
+              <option value="+591">🇧🇴 +591</option>
+              <option value="+1">🇺🇸 +1</option>
+              <option value="+44">🇬🇧 +44</option>
+              <option value="+33">🇫🇷 +33</option>
+              <option value="+49">🇩🇪 +49</option>
+            </select>
+            <input class="rdp-field" id="f-telefono" type="tel" placeholder="Tu teléfono" style="margin-bottom:0;flex:1;" />
+          </div>
+          <input class="rdp-field" id="f-destino" type="text" placeholder="¿A dónde querés viajar?" />
+          <input class="rdp-field" id="f-fecha" type="date" />
+          <label style="font-size:11px;color:#999;margin:-4px 0 8px;display:block;">Fecha de salida</label>
+          <input class="rdp-field" id="f-viajeros" type="number" min="1" max="99" placeholder="Número de viajeros" />
+          <select class="rdp-field" id="f-tipo">
+            <option value="" disabled selected>Tipo de viaje</option>
+            <option value="Cultural">🏛️  Cultural</option>
+            <option value="Romántico">💑 Romántico</option>
+            <option value="Aventura">🧗 Aventura</option>
+            <option value="Religioso">🕌 Religioso</option>
+            <option value="Familiar">👨‍👩‍👧 Familiar</option>
+            <option value="Otro">✨ Otro</option>
           </select>
-          <input class="rdp-field" id="f-telefono" type="tel" placeholder="Tu teléfono" style="margin-bottom:0;flex:1;" />
+          <textarea class="rdp-field" id="f-descripcion" placeholder="Contanos brevemente cómo imaginás tu viaje..." style="resize:none;height:80px;font-family:sans-serif;"></textarea>
         </div>
-
-        <input class="rdp-field" id="f-destino" type="text" placeholder="¿A dónde querés viajar?" />
-
-        <input class="rdp-field" id="f-fecha" type="date" placeholder="Fecha de salida" />
-        <label style="font-size:11px;color:#999;margin:-4px 0 6px;display:block;">Fecha de salida</label>
-
-        <input class="rdp-field" id="f-viajeros" type="number" min="1" max="99" placeholder="Número de viajeros" />
-
-        <select class="rdp-field" id="f-tipo">
-          <option value="" disabled selected>Tipo de viaje</option>
-          <option value="Cultural">🏛️  Cultural</option>
-          <option value="Romántico">💑 Romántico</option>
-          <option value="Aventura">🧗 Aventura</option>
-          <option value="Religioso">🕌 Religioso</option>
-          <option value="Familiar">👨‍👩‍👧 Familiar</option>
-          <option value="Otro">✨ Otro</option>
-        </select>
-
-        <textarea class="rdp-field" id="f-descripcion" placeholder="Contanos brevemente cómo imaginás tu viaje..." style="resize:none;height:72px;font-family:sans-serif;"></textarea>
-
-        <button onclick="rdpSubmitForm()" style="width:100%;background:#2596be;color:white;border:none;border-radius:8px;padding:10px;font-size:14px;font-weight:600;cursor:pointer;margin-top:4px;">Enviar</button>
-        <button onclick="rdpHideForm()" style="width:100%;background:none;border:none;color:#999;font-size:12px;cursor:pointer;margin-top:6px;">Cancelar</button>
+        <div id="rdp-form-btns">
+          <button onclick="rdpSubmitForm()" style="width:100%;background:#2596be;color:white;border:none;border-radius:8px;padding:10px;font-size:14px;font-weight:600;cursor:pointer;">Enviar</button>
+          <button onclick="rdpHideForm()" style="width:100%;background:none;border:none;color:#999;font-size:12px;cursor:pointer;margin-top:6px;">Cancelar</button>
+        </div>
       </div>
 
       <div id="rdp-input-area">
@@ -445,6 +441,8 @@
     .rdp-bot { background: #f0f7fb; color: #222; align-self: flex-start; border-bottom-left-radius: 4px; }
     .rdp-user { background: #2596be; color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
     .rdp-typing { color: #999; font-size: 13px; font-style: italic; }
+    #rdp-form-fields { flex: 1; overflow-y: auto; padding: 16px 16px 8px; background: #f9f9f9; }
+    #rdp-form-btns { padding: 8px 16px 12px; background: #f9f9f9; border-top: 1px solid #eee; flex-shrink: 0; }
     #rdp-input-area { display: flex; padding: 12px 12px 6px; border-top: 1px solid #eee; gap: 8px; flex-shrink: 0; }
     #rdp-input { flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 10px 12px; font-size: 14px; outline: none; }
     #rdp-input:focus { border-color: #2596be; }
@@ -458,9 +456,23 @@
   </style>
 
   <script>
-    const RDP_SESSION = crypto.randomUUID();
+    const RDP_SESSION = sessionStorage.getItem('rdp_session') || crypto.randomUUID();
+    sessionStorage.setItem('rdp_session', RDP_SESSION);
+
     const RDP_WEBHOOK = 'https://n8n-jcg4epwgyztosnmbxghhwvdv.34.133.34.116.sslip.io/webhook/RutadePapel-agent';
     const RDP_LEADS = 'https://n8n-jcg4epwgyztosnmbxghhwvdv.34.133.34.116.sslip.io/webhook/rutadepapel-leads';
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const saved = sessionStorage.getItem('rdp_messages');
+      if (saved) {
+        document.getElementById('rdp-messages').innerHTML = saved;
+        document.getElementById('rdp-messages').scrollTop = 9999;
+      }
+    });
+
+    function rdpSaveMessages() {
+      sessionStorage.setItem('rdp_messages', document.getElementById('rdp-messages').innerHTML);
+    }
 
     function rdpToggle() {
       const box = document.getElementById('rdp-box');
@@ -469,7 +481,6 @@
 
     function rdpShowForm() {
       document.getElementById('rdp-form').style.display = 'flex';
-      document.getElementById('rdp-form').style.flexDirection = 'column';
       document.getElementById('rdp-messages').style.display = 'none';
       document.getElementById('rdp-input-area').style.display = 'none';
       document.getElementById('rdp-powered').style.display = 'none';
@@ -549,9 +560,10 @@
       const btn = document.createElement('button');
       btn.className = 'rdp-contact-btn';
       btn.textContent = '📋 Quiero que me contacten';
-      btn.onclick = () => { btn.remove(); rdpShowForm(); };
+      btn.onclick = () => { btn.remove(); rdpSaveMessages(); rdpShowForm(); };
       msgs.appendChild(btn);
       msgs.scrollTop = msgs.scrollHeight;
+      rdpSaveMessages();
     }
 
     function rdpAppend(text, classes, withIcon) {
@@ -572,6 +584,7 @@
       wrapper.appendChild(div);
       msgs.appendChild(wrapper);
       msgs.scrollTop = msgs.scrollHeight;
+      rdpSaveMessages();
       return wrapper;
     }
 
