@@ -335,11 +335,13 @@
       if (this.checked) document.getElementById('privacyError').style.display = 'none';
     });
   </script>
+
   <!-- ── Chat Widget ── -->
   <div id="rdp-widget">
     <button id="rdp-toggle" onclick="rdpToggle()">
       <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
     </button>
+
     <div id="rdp-box">
       <div id="rdp-header">
         <div style="display:flex;align-items:center;gap:10px;">
@@ -353,14 +355,27 @@
         </div>
         <button onclick="rdpToggle()" style="background:none;border:none;color:white;font-size:20px;cursor:pointer;line-height:1;">✕</button>
       </div>
+
       <div id="rdp-messages">
         <div style="display:flex;align-items:flex-end;gap:8px;">
-          <div class="rdp-bot-icon-wrap">
+          <div class="rdp-icon-wrap">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="#2596be"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
           </div>
           <div class="rdp-msg rdp-bot">¡Hola! Soy el asistente de Ruta de Papel. ¿En qué puedo ayudarte?</div>
         </div>
       </div>
+
+      <!-- Formulario de contacto (oculto por defecto) -->
+      <div id="rdp-form" style="display:none;padding:16px;border-top:1px solid #eee;background:#f9f9f9;">
+        <p style="font-size:13px;font-weight:600;color:#333;margin:0 0 12px;">Dejanos tus datos y te contactamos:</p>
+        <input class="rdp-field" id="f-nombre" type="text" placeholder="Tu nombre" />
+        <input class="rdp-field" id="f-email" type="email" placeholder="Tu email" />
+        <input class="rdp-field" id="f-telefono" type="tel" placeholder="Tu teléfono" />
+        <input class="rdp-field" id="f-destino" type="text" placeholder="¿A dónde querés viajar?" />
+        <button onclick="rdpSubmitForm()" style="width:100%;background:#2596be;color:white;border:none;border-radius:8px;padding:10px;font-size:14px;font-weight:600;cursor:pointer;margin-top:4px;">Enviar</button>
+        <button onclick="rdpHideForm()" style="width:100%;background:none;border:none;color:#999;font-size:12px;cursor:pointer;margin-top:6px;">Cancelar</button>
+      </div>
+
       <div id="rdp-input-area">
         <input id="rdp-input" type="text" placeholder="Escribe tu pregunta..." onkeydown="if(event.key==='Enter') rdpSend()" />
         <button onclick="rdpSend()">
@@ -374,10 +389,10 @@
     #rdp-widget { position: fixed; bottom: 24px; right: 24px; z-index: 9999; font-family: sans-serif; }
     #rdp-toggle { width: 60px; height: 60px; border-radius: 50%; background: #2596be; border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; margin-left: auto; transition: transform 0.2s; }
     #rdp-toggle:hover { transform: scale(1.08); }
-    #rdp-box { display: none; flex-direction: column; width: 340px; height: 500px; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.2); overflow: hidden; margin-bottom: 12px; }
+    #rdp-box { display: none; flex-direction: column; width: 340px; height: 520px; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.2); overflow: hidden; margin-bottom: 12px; }
     #rdp-header { background: #2596be; color: white; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; }
     #rdp-avatar { width: 38px; height: 38px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .rdp-bot-icon-wrap { width: 28px; height: 28px; border-radius: 50%; background: #e8f4fb; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .rdp-icon-wrap { width: 28px; height: 28px; border-radius: 50%; background: #e8f4fb; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     #rdp-messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
     .rdp-msg { max-width: 78%; padding: 10px 14px; border-radius: 12px; font-size: 14px; line-height: 1.5; }
     .rdp-bot { background: #f0f7fb; color: #222; align-self: flex-start; border-bottom-left-radius: 4px; }
@@ -387,22 +402,63 @@
     #rdp-input { flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 10px 12px; font-size: 14px; outline: none; }
     #rdp-input:focus { border-color: #2596be; }
     #rdp-input-area button { background: #2596be; border: none; border-radius: 8px; width: 42px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .rdp-field { width: 100%; box-sizing: border-box; border: 1px solid #ddd; border-radius: 8px; padding: 9px 12px; font-size: 13px; margin-bottom: 8px; outline: none; }
+    .rdp-field:focus { border-color: #2596be; }
+    .rdp-contact-btn { background: #e8f4fb; color: #2596be; border: 1px solid #2596be; border-radius: 8px; padding: 8px 14px; font-size: 13px; font-weight: 600; cursor: pointer; margin-top: 6px; }
   </style>
 
   <script>
     const RDP_SESSION = crypto.randomUUID();
     const RDP_WEBHOOK = 'https://n8n-jcg4epwgyztosnmbxghhwvdv.34.133.34.116.sslip.io/webhook/RutadePapel-agent';
+    const RDP_LEADS = 'https://n8n-jcg4epwgyztosnmbxghhwvdv.34.133.34.116.sslip.io/webhook/rutadepapel-leads';
+
     function rdpToggle() {
       const box = document.getElementById('rdp-box');
       box.style.display = box.style.display === 'flex' ? 'none' : 'flex';
     }
+
+    function rdpShowForm() {
+      document.getElementById('rdp-form').style.display = 'block';
+      document.getElementById('rdp-input-area').style.display = 'none';
+    }
+
+    function rdpHideForm() {
+      document.getElementById('rdp-form').style.display = 'none';
+      document.getElementById('rdp-input-area').style.display = 'flex';
+    }
+
+    async function rdpSubmitForm() {
+      const nombre = document.getElementById('f-nombre').value.trim();
+      const email = document.getElementById('f-email').value.trim();
+      const telefono = document.getElementById('f-telefono').value.trim();
+      const destino = document.getElementById('f-destino').value.trim();
+
+      if (!nombre || !email) {
+        alert('Por favor completá al menos tu nombre y email.');
+        return;
+      }
+
+      rdpHideForm();
+      rdpAppend('Gracias ' + nombre + ', ¡nos ponemos en contacto pronto!', 'rdp-bot', true);
+
+      try {
+        await fetch(RDP_LEADS, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nombre, email, telefono, destino })
+        });
+      } catch(e) {}
+    }
+
     async function rdpSend() {
       const input = document.getElementById('rdp-input');
       const msg = input.value.trim();
       if (!msg) return;
       input.value = '';
+
       rdpAppend(msg, 'rdp-user', false);
       const typing = rdpAppend('Escribiendo...', 'rdp-bot rdp-typing', true);
+
       try {
         const res = await fetch(RDP_WEBHOOK, {
           method: 'POST',
@@ -411,30 +467,46 @@
         });
         const data = await res.json();
         typing.remove();
-        rdpAppend(data.output || 'No pude obtener una respuesta.', 'rdp-bot', true);
+
+        const responseText = data.output || 'No pude obtener una respuesta.';
+        rdpAppend(responseText, 'rdp-bot', true);
+
+        if (rdpShouldShowForm(responseText)) {
+          setTimeout(() => { rdpAppendContactButton(); }, 500);
+        }
       } catch {
         typing.remove();
         rdpAppend('Error al conectar. Intenta de nuevo.', 'rdp-bot', true);
       }
     }
-    function rdpParseMarkdown(text) {
-      return text
-        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-        .replace(/\*(.+?)\*/g, '<em>$1</em>')
-        .replace(/^\* /gm, '• ')
-        .replace(/\n/g, '<br>');
+
+    function rdpShouldShowForm(text) {
+      const triggers = ['contactar', 'equipo', 'ponemos en contacto', 'te escribimos', 'llamarte', 'asesor'];
+      return triggers.some(t => text.toLowerCase().includes(t));
     }
+
+    function rdpAppendContactButton() {
+      const msgs = document.getElementById('rdp-messages');
+      const btn = document.createElement('button');
+      btn.className = 'rdp-contact-btn';
+      btn.textContent = '📋 Quiero que me contacten';
+      btn.onclick = () => { btn.remove(); rdpShowForm(); };
+      msgs.appendChild(btn);
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+
     function rdpAppend(text, classes, withIcon) {
       const msgs = document.getElementById('rdp-messages');
       const wrapper = document.createElement('div');
       wrapper.style.cssText = 'display:flex;align-items:flex-end;gap:8px;';
-      if (withIcon) {
+
+      if (withIcon && classes.includes('rdp-bot')) {
         const icon = document.createElement('div');
-        icon.style.cssText = 'width:28px;height:28px;border-radius:50%;background:#e8f4fb;display:flex;align-items:center;justify-content:center;flex-shrink:0;';
+        icon.className = 'rdp-icon-wrap';
         icon.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="#2596be"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>';
         wrapper.appendChild(icon);
       }
+
       const div = document.createElement('div');
       div.className = 'rdp-msg ' + classes;
       div.innerHTML = rdpParseMarkdown(text);
@@ -443,7 +515,15 @@
       msgs.scrollTop = msgs.scrollHeight;
       return wrapper;
     }
-  </script>
 
+    function rdpParseMarkdown(text) {
+      return text
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.+?)\*/g, '<em>$1</em>')
+        .replace(/^\* /gm, '• ')
+        .replace(/\n/g, '<br>');
+    }
+  </script>
 </body>
 </html>
