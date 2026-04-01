@@ -240,10 +240,12 @@
         </div>
       </div>
 
-      <div id="rdp-form" style="display:none;padding:16px;border-top:1px solid #eee;background:#f9f9f9;overflow-y:auto;">
+      <div id="rdp-form" style="display:none;padding:16px;border-top:1px solid #eee;background:#f9f9f9;overflow-y:auto;flex:1;">
         <p style="font-size:13px;font-weight:600;color:#333;margin:0 0 12px;">Dejanos tus datos y te contactamos:</p>
-        <input class="rdp-field" id="f-nombre" type="text" placeholder="Tu nombre" />
-        <input class="rdp-field" id="f-email" type="email" placeholder="Tu email" />
+
+        <input class="rdp-field" id="f-nombre" type="text" placeholder="Tu nombre *" />
+        <input class="rdp-field" id="f-email" type="email" placeholder="Tu email *" />
+
         <div style="display:flex;gap:6px;margin-bottom:8px;">
           <select id="f-prefijo" class="rdp-field" style="width:110px;margin-bottom:0;flex-shrink:0;">
             <option value="+34">🇪🇸 +34</option>
@@ -264,7 +266,26 @@
           </select>
           <input class="rdp-field" id="f-telefono" type="tel" placeholder="Tu teléfono" style="margin-bottom:0;flex:1;" />
         </div>
+
         <input class="rdp-field" id="f-destino" type="text" placeholder="¿A dónde querés viajar?" />
+
+        <input class="rdp-field" id="f-fecha" type="date" placeholder="Fecha de salida" />
+        <label style="font-size:11px;color:#999;margin:-4px 0 6px;display:block;">Fecha de salida</label>
+
+        <input class="rdp-field" id="f-viajeros" type="number" min="1" max="99" placeholder="Número de viajeros" />
+
+        <select class="rdp-field" id="f-tipo">
+          <option value="" disabled selected>Tipo de viaje</option>
+          <option value="Cultural">🏛️  Cultural</option>
+          <option value="Romántico">💑 Romántico</option>
+          <option value="Aventura">🧗 Aventura</option>
+          <option value="Religioso">🕌 Religioso</option>
+          <option value="Familiar">👨‍👩‍👧 Familiar</option>
+          <option value="Otro">✨ Otro</option>
+        </select>
+
+        <textarea class="rdp-field" id="f-descripcion" placeholder="Contanos brevemente cómo imaginás tu viaje..." style="resize:none;height:72px;font-family:sans-serif;"></textarea>
+
         <button onclick="rdpSubmitForm()" style="width:100%;background:#2596be;color:white;border:none;border-radius:8px;padding:10px;font-size:14px;font-weight:600;cursor:pointer;margin-top:4px;">Enviar</button>
         <button onclick="rdpHideForm()" style="width:100%;background:none;border:none;color:#999;font-size:12px;cursor:pointer;margin-top:6px;">Cancelar</button>
       </div>
@@ -286,8 +307,8 @@
     #rdp-toggle { width: 60px; height: 60px; border-radius: 50%; background: #1e3040; border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; margin-left: auto; transition: transform 0.2s; padding: 0; box-sizing: border-box; overflow: hidden; }
     #rdp-toggle:hover { transform: scale(1.08); }
     #rdp-logo-btn { width: 100%; height: 100%; object-fit: cover; display: block; }
-    #rdp-box { display: none; flex-direction: column; width: 340px; height: 530px; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.2); overflow: hidden; margin-bottom: 12px; }
-    #rdp-header { background: #2596be; color: white; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; }
+    #rdp-box { display: none; flex-direction: column; width: 340px; height: 580px; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.2); overflow: hidden; margin-bottom: 12px; }
+    #rdp-header { background: #2596be; color: white; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
     #rdp-avatar { width: 42px; height: 42px; border-radius: 50%; background: #1e3040; flex-shrink: 0; overflow: hidden; }
     #rdp-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .rdp-icon-wrap { width: 30px; height: 30px; border-radius: 50%; background: #1e3040; flex-shrink: 0; overflow: hidden; }
@@ -297,14 +318,14 @@
     .rdp-bot { background: #f0f7fb; color: #222; align-self: flex-start; border-bottom-left-radius: 4px; }
     .rdp-user { background: #2596be; color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
     .rdp-typing { color: #999; font-size: 13px; font-style: italic; }
-    #rdp-input-area { display: flex; padding: 12px 12px 6px; border-top: 1px solid #eee; gap: 8px; }
+    #rdp-input-area { display: flex; padding: 12px 12px 6px; border-top: 1px solid #eee; gap: 8px; flex-shrink: 0; }
     #rdp-input { flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 10px 12px; font-size: 14px; outline: none; }
     #rdp-input:focus { border-color: #2596be; }
     #rdp-input-area button { background: #2596be; border: none; border-radius: 8px; width: 42px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-    #rdp-powered { text-align: center; font-size: 11px; color: #bbb; padding: 4px 12px 10px; }
+    #rdp-powered { text-align: center; font-size: 11px; color: #bbb; padding: 4px 12px 10px; flex-shrink: 0; }
     #rdp-powered a { color: #2596be; text-decoration: none; font-weight: 600; }
     #rdp-powered a:hover { text-decoration: underline; }
-    .rdp-field { width: 100%; box-sizing: border-box; border: 1px solid #ddd; border-radius: 8px; padding: 9px 12px; font-size: 13px; margin-bottom: 8px; outline: none; }
+    .rdp-field { width: 100%; box-sizing: border-box; border: 1px solid #ddd; border-radius: 8px; padding: 9px 12px; font-size: 13px; margin-bottom: 8px; outline: none; background: white; }
     .rdp-field:focus { border-color: #2596be; }
     .rdp-contact-btn { background: #e8f4fb; color: #2596be; border: 1px solid #2596be; border-radius: 8px; padding: 8px 14px; font-size: 13px; font-weight: 600; cursor: pointer; margin-top: 6px; }
   </style>
@@ -320,13 +341,16 @@
     }
 
     function rdpShowForm() {
-      document.getElementById('rdp-form').style.display = 'block';
+      document.getElementById('rdp-form').style.display = 'flex';
+      document.getElementById('rdp-form').style.flexDirection = 'column';
+      document.getElementById('rdp-messages').style.display = 'none';
       document.getElementById('rdp-input-area').style.display = 'none';
       document.getElementById('rdp-powered').style.display = 'none';
     }
 
     function rdpHideForm() {
       document.getElementById('rdp-form').style.display = 'none';
+      document.getElementById('rdp-messages').style.display = 'flex';
       document.getElementById('rdp-input-area').style.display = 'flex';
       document.getElementById('rdp-powered').style.display = 'block';
     }
@@ -337,6 +361,10 @@
       const prefijo = document.getElementById('f-prefijo').value;
       const telefono = document.getElementById('f-telefono').value.trim();
       const destino = document.getElementById('f-destino').value.trim();
+      const fecha = document.getElementById('f-fecha').value;
+      const viajeros = document.getElementById('f-viajeros').value.trim();
+      const tipo = document.getElementById('f-tipo').value;
+      const descripcion = document.getElementById('f-descripcion').value.trim();
 
       if (!nombre || !email) {
         alert('Por favor completá al menos tu nombre y email.');
@@ -351,7 +379,7 @@
         await fetch(RDP_LEADS, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ nombre, email, telefono: telefonoCompleto, destino })
+          body: JSON.stringify({ nombre, email, telefono: telefonoCompleto, destino, fecha_salida: fecha, num_viajeros: viajeros, tipo_viaje: tipo, descripcion })
         });
       } catch(e) {}
     }
@@ -429,5 +457,6 @@
         .replace(/\n/g, '<br>');
     }
   </script>
+
 </body>
 </html>
