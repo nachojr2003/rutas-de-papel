@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diseña tu Viaje – Ruta de Papel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Pinyon+Script&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --teal: #1d6277;
+      --teal-dark: #154d61;
+    }
+    body {
+      font-family: 'Source Sans 3', Helvetica, Arial, sans-serif;
+      font-size: 18px;
+      line-height: 1.75;
+      color: #3a3a3a;
+      -webkit-font-smoothing: antialiased;
+    }
+    /* Logo */
+    .logo-wrap { display: flex; flex-direction: column; align-items: flex-start; line-height: 1; gap: 0; }
+    .logo-ruta-line { display: flex; align-items: baseline; gap: 6px; }
+    .logo-ruta  { font-family: 'Nunito', sans-serif; font-weight: 900; font-size: 26px; letter-spacing: 0.5px; color: var(--teal); }
+    .logo-de    { font-family: 'Nunito', sans-serif; font-weight: 400; font-size: 14px; color: var(--teal); letter-spacing: 0.5px; }
+    .logo-papel { font-family: 'Pinyon Script', cursive; font-size: 42px; color: var(--teal); margin-top: -8px; line-height: 1.1; }
+    /* Buttons */
+    .btn-teal { background-color: var(--teal); color: #fff; text-transform: uppercase; letter-spacing: 3px; font-size: 12px; font-weight: 700; padding: 14px 36px; display: inline-block; transition: background 0.3s; cursor: pointer; border: none; }
+    .btn-teal:hover { background-color: var(--teal-dark); }
+    .btn-outline-teal { border: 1.5px solid var(--teal); color: var(--teal); text-transform: uppercase; letter-spacing: 3px; font-size: 12px; font-weight: 700; padding: 14px 36px; display: inline-block; transition: all 0.3s; }
+    .btn-outline-teal:hover { background: var(--teal); color: #fff; }
+    /* Nav */
+    .nav-link { text-transform: uppercase; letter-spacing: 2.5px; font-size: 13px; font-weight: 600; }
+    /* Section label */
+    .section-label { text-transform: uppercase; letter-spacing: 5px; font-size: 12px; font-weight: 700; color: var(--teal); }
+    /* Form */
+    .form-label { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 3px; color: #888; margin-bottom: 6px; font-weight: 600; }
+    .form-input {
+      border: 1px solid #d5d5d5;
+      padding: 13px 18px;
+      font-size: 15px;
+      width: 100%;
+      outline: none;
+      font-family: inherit;
+      color: #3a3a3a;
+      background: #fff;
+      letter-spacing: 0.3px;
+      transition: border-color 0.2s;
+    }
+    .form-input:focus { border-color: var(--teal); }
+    .form-input:invalid:not(:placeholder-shown) { border-color: #e57373; }
+    textarea.form-input { resize: vertical; padding: 14px 18px; }
+    .trip-type-btn {
+      border: 1px solid #ccc;
+      padding: 9px 20px;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: #fff;
+      font-family: inherit;
+    }
+    .trip-type-btn:hover, .trip-type-btn.active {
+      border-color: var(--teal);
+      background: var(--teal);
+      color: #fff;
+    }
+    /* Required field asterisk */
+    .required-mark { color: #e92679; margin-left: 2px; }
+    /* Error state */
+    .field-error { font-size: 12px; color: #e57373; margin-top: 4px; display: none; }
+    input:user-invalid ~ .field-error,
+    textarea:user-invalid ~ .field-error { display: block; }
+    /* Custom checkbox */
+    .privacy-wrap { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; color: #555; cursor: pointer; }
+    .privacy-wrap input[type=checkbox] { accent-color: var(--teal); width: 18px; height: 18px; margin-top: 3px; flex-shrink: 0; cursor: pointer; }
+    /* Hero mini */
+    .page-hero { height: 280px; position: relative; overflow: hidden; }
+  </style>
+</head>
+<body class="bg-white">
+
+  <!-- NAV -->
+  <header class="fixed top-0 left-0 right-0 z-50" style="background: rgba(255,255,255,0.96); border-bottom: 1px solid rgba(0,0,0,0.07); backdrop-filter: blur(8px);">
+    <div class="max-w-7xl mx-auto px-8 flex items-center justify-between" style="height: 72px">
+      <!-- Logo -->
+      <a href="index.html" style="display:inline-block; color: #1d6277; line-height:0">
+        <svg preserveAspectRatio="xMidYMid meet" viewBox="0.011 0 437.031 217.89" xmlns="http://www.w3.org/2000/svg" style="width:120px; height:auto; display:block" aria-label="Ruta de papel" fill="currentColor">
+          <g>
+            <path d="M122.97 86.46h-16.19L85.17 54.73h-9.29l.02 31.76H62.47L62.42.02 96.18 0c18.58-.01 26.37 13.79 26.37 27.47 0 12.55-6.39 25.11-22.33 26.75l22.74 32.24ZM75.86 12.31l.02 30.25h19.33c9.66-.02 13.55-7.68 13.55-15.08 0-7.28-3.77-15.19-13.06-15.18H75.87Z"/><path d="M171.76 27.82h12.93l.03 58.61h-12.93V77.9c-3.38 6.65-11.29 9.8-17.44 9.8-14.43 0-22.85-9.02-22.73-25.72l-.02-34.14h12.93l.02 32.63c0 9.66 5.16 14.68 12.18 14.68 7.53 0 15.06-4.15 15.05-15.82l-.02-31.5Z"/><path d="M215.44 27.79h12.43v10.66h-12.43l.03 47.95h-12.93l-.03-47.94h-10.54V27.8h10.54l-.01-22.22h12.93z"/><path d="M279.98 77.96c-4.01 6.4-12.17 9.67-19.7 9.68-15.69 0-29.75-11.91-29.77-30.61-.01-18.7 14.04-30.51 29.73-30.52 7.03 0 15.69 2.88 19.71 9.53v-8.28h12.8l.03 58.62h-12.8v-8.4Zm-18.2-2.87c9.54 0 18.07-6.66 18.06-18.21 0-11.42-9.3-17.82-18.08-17.81-9.66 0-17.94 7.04-17.94 17.83s8.29 18.19 17.96 18.19"/><path d="M336.61 82.87c-1.75 2.82-5.6 4.44-9.28 4.44-7.24 0-13.35-5.19-13.36-13.2 0-8.07 6.05-13.16 13.29-13.16 3.9 0 7.58 1.46 9.34 4.33V47.74h5.14l.02 39.03h-5.15v-3.89Zm-8.84-17.11c-4.75 0-8.54 3.31-8.54 8.29s3.79 8.44 8.55 8.44c4.7 0 8.77-3.09 8.76-8.45 0-5.41-4.47-8.28-8.77-8.28"/><path d="M374.28 75.97h-21.44c.62 4.29 4.02 6.89 8.55 6.88 3.17 0 6.05-1.36 7.58-3.9 1.36.59 3 1.03 4.41 1.62-2.26 4.49-7.01 6.72-12.16 6.72-7.52 0-13.52-5.24-13.53-13.26 0-8.01 5.99-13.11 13.51-13.11s13.13 5.08 13.13 13.09c0 .6 0 1.35-.06 1.95Zm-5.04-3.84c-.62-4.28-3.74-6.77-8.04-6.76-4.36 0-7.75 2.5-8.37 6.77h16.41Z"/><path d="M436.55 124.25c-.37-.32-.91-.33-1.6-.05-.69.29-1.38.99-2.07 2.13-1.44 2.14-2.87 4.38-4.29 6.74-1.41 2.36-2.84 4.76-4.29 7.21-1.95 3.27-4.05 6.63-6.31 10.09-2.25 3.46-4.61 6.79-7.06 9.99s-4.9 6.23-7.35 9.05c-2.45 2.83-4.83 5.23-7.16 7.22-2.33 1.98-4.5 3.46-6.54 4.43-2.05.98-3.85 1.24-5.42.8-2.38-.63-3.99-2.29-4.8-4.99q-1.23-4.05-.9-9.75c.22-3.81.81-7.93 1.78-12.4.97-4.46 2.08-8.75 3.34-12.86.66-2.17 1.32-4.23 1.97-6.18.59-1.75 1.17-3.41 1.75-4.99q.45-1.245.87-2.31c.83-2.17 1.53-3.85 2.09-5.03 2.07-2.71 4.3-5.66 6.69-8.86 2.39-3.21 4.8-6.57 7.26-10.09 2.44-3.52 4.83-7.1 7.16-10.75 2.32-3.65 4.42-7.23 6.3-10.75s3.5-6.91 4.85-10.18 2.27-6.29 2.78-9.05c.56-3.08.48-5.44-.24-7.07s-1.79-2.67-3.21-3.11c-1.42-.43-3-.33-4.76.34-1.76.66-3.43 1.78-5 3.35q-2.82 2.925-5.79 7.59c-1.97 3.11-3.97 6.67-5.98 10.66s-3.98 8.34-5.93 13.05c-1.95 4.72-3.83 9.63-5.65 14.76-1.82 5.12-3.56 10.35-5.22 15.7-1.67 5.34-3.18 10.62-4.56 15.84-.1.36-.2.73-.3 1.1-1.3.92-2.68 1.84-4.11 2.76a62 62 0 0 1-8.06 4.39c-2.73 1.23-5.37 2.08-7.91 2.55s-4.79.3-6.74-.51c-1.89-.75-3.19-1.88-3.91-3.39s-1.08-3.15-1.08-4.95.26-3.6.8-5.42c0-.02.01-.04.02-.06.52-1.79 1.1-3.41 1.72-4.84 1.08.03 2.14 0 3.2-.11 1.04-.1 2.06-.27 3.07-.51 2.04-.47 3.83-1.12 5.37-1.93 1.54-.82 2.75-1.77 3.63-2.88s1.23-2.28 1.04-3.54c-.13-1.07-.63-2.04-1.51-2.91s-2.17-1.51-3.87-1.88c-1.82-.38-3.57-.31-5.28.19-1.7.5-3.29 1.27-4.8 2.31a26.5 26.5 0 0 0-4.15 3.54c-1.25 1.32-2.33 2.61-3.2 3.87-1.48 2.1-2.74 4.41-3.77 6.9-.75.21-1.51.43-2.28.64-4.33 1.2-8.76 2.58-13.29 4.16 2.01-5.28 2.5-9.41 1.46-12.39-1.04-2.99-3.42-4.29-7.12-3.91-2.14.25-4.2.98-6.17 2.17-1.98 1.19-3.85 2.66-5.6 4.38a48 48 0 0 0-4.9 5.66 99 99 0 0 0-3.08 4.38c-.35.53-.69 1.04-1.02 1.56a105 105 0 0 0-3.16 5.23c-.18.32-.34.62-.5.9-.64 1.13-1.16 1.99-1.57 2.59.31-.76.61-1.52.92-2.26.87-2.13 1.74-4.19 2.61-6.19 1.34-3.06 2.67-5.96 4-8.7 2.51-5.15 4.64-9.28 6.4-12.35.57-.94.59-1.81.1-2.59-.51-.78-1.24-1.35-2.22-1.69-.97-.34-2.06-.36-3.25-.04s-2.2 1.13-3.01 2.45c-3.39 5.15-6.36 11.11-8.9 17.86-1.29 3.43-2.48 6.91-3.56 10.45-.96.37-1.91.68-2.87.96-3.11.91-5.8 1.12-8.06.62-1.32-.31-2.45-.91-3.39-1.79-.95-.88-1.61-2.09-1.99-3.62-.37-1.54-.44-3.48-.19-5.8.25-2.33.91-5.1 1.98-8.3.31-1 .27-1.89-.14-2.64-.41-.76-1.04-1.25-1.89-1.51-.85-.25-1.84-.2-2.97.14s-2.26 1.05-3.39 2.12c-.32.32-.97 1.01-1.98 2.08s-2.19 2.3-3.54 3.68c-1.34 1.38-2.76 2.83-4.24 4.33a75 75 0 0 1-4.19 4.01c-1.32 1.16-2.47 2.06-3.44 2.69s-1.58.75-1.84.38c-.32-.44-.46-1.05-.43-1.84.03-.78.15-1.6.33-2.45.19-.85.43-1.65.71-2.4.17-.46.32-.85.46-1.19.08-.22.17-.43.24-.6.65-1.56 1.46-3.12 2.44-4.66.36-.55.74-1.11 1.13-1.65 1.51-2.08 3.17-3.92 4.99-5.52 1.82-1.61 3.73-2.86 5.75-3.77s3.99-1.28 5.94-1.09c1.51.13 2.92.62 4.24 1.46 1.33.85 2.42 2.09 3.3 3.72.44 1.13 1.05 1.93 1.84 2.4s1.51.64 2.17.52c.67-.13 1.15-.51 1.46-1.14.32-.62.22-1.47-.28-2.54-1.07-2.26-2.64-3.97-4.72-5.13s-4.3-1.9-6.7-2.21c-3.95-.57-7.82-.28-11.59.85s-7.18 2.88-10.22 5.23c-3.05 2.36-5.59 5.2-7.63 8.53-.81 1.32-1.49 2.68-2.04 4.09-.52.15-1.04.29-1.56.44-4.34 1.2-8.77 2.58-13.29 4.16 2-5.28 2.49-9.41 1.45-12.39s-3.41-4.29-7.12-3.91c-2.14.25-4.2.98-6.17 2.17-1.98 1.19-3.85 2.66-5.6 4.38a48 48 0 0 0-4.9 5.66c-1.51 2.04-2.87 4.02-4.1 5.94a105 105 0 0 0-3.16 5.23c-.88 1.58-1.57 2.73-2.07 3.49 2.51-6.28 5.02-12 7.52-17.16 2.51-5.15 4.65-9.28 6.41-12.35.5-.88.52-1.72.04-2.54-.47-.81-1.18-1.38-2.12-1.7-8.55-4.39-17.18-7.57-25.88-9.55-8.71-1.97-17.41-3.12-26.11-3.43-8.71-.3-17.35.03-25.97 1.01-8.61.98-17.07 2.25-25.4 3.83q-12.48 2.37-24.45 5.01c-7.98 1.76-15.66 3.26-23.04 4.49-7.38 1.22-14.43 2.03-21.16 2.41-6.72.38-13-.05-18.85-1.31-.69-.56-1.44-.97-2.26-1.23-.81-.24-1.63-.31-2.45-.19-.82.13-1.57.37-2.26.71-.69.35-1.23.74-1.6 1.18s-.5.88-.37 1.32c.13.43.56.78 1.32 1.04 7.54 1.38 15.25 1.95 23.14 1.72 7.89-.22 15.85-.9 23.89-2.04 8.04-1.13 16.18-2.55 24.4-4.25 8.23-1.7 16.46-3.33 24.7-4.86q12.345-2.325 24.69-3.93a163 163 0 0 1 24.5-1.38c8.1.15 16.1 1.07 23.99 2.76s15.63 4.52 23.24 8.47l-.38.56c-3.39 5.15-6.36 11.11-8.9 17.86-2.54 6.76-4.69 13.73-6.44 20.93-1.76 7.19-3.12 14.28-4.09 21.25s-1.55 13.29-1.73 18.95c-.12 5.09.38 9.64 1.52 13.66q1.695 6.03 4.53 9.24c1.32 1.38 2.61 2.19 3.86 2.4q1.89.33 3.06-.33c.79-.44 1.21-1.09 1.27-1.94s-.47-1.65-1.61-2.4c-3.58-2.32-6.13-5.37-7.64-9.14s-2.21-7.98-2.08-12.63c.06-3.9.6-8.01 1.6-12.34 1-4.34 2.32-8.66 3.95-12.96s3.48-8.5 5.55-12.58c2.07-4.09 4.24-7.89 6.5-11.41 2.25-3.52 4.5-6.62 6.73-9.29s4.31-4.76 6.26-6.27c1.7-1.26 3.03-1.95 4.01-2.08s1.68.13 2.12.76c.44.62.68 1.51.71 2.64.04 1.13-.08 2.33-.33 3.58s-.56 2.48-.94 3.67c-.38 1.2-.76 2.14-1.13 2.83-4.96 2.01-8.54 3.92-10.73 5.7-2.2 1.8-3.41 3.32-3.63 4.58-.22 1.25.34 2.15 1.7 2.68 1.35.53 3.11.5 5.28-.1s4.52-1.85 7.06-3.78c2.54-1.92 4.88-4.63 7.02-8.16 2.58-1.07 5.23-2.01 7.96-2.83 2.73-.81 5.42-1.56 8.06-2.22l.25-.06c-.2.9-.35 1.82-.45 2.75-.25 1.95-.14 3.83.33 5.66.47 1.82 1.47 3.11 2.97 3.86 1.7.88 3.44 1.07 5.23.56s3.55-1.4 5.28-2.69 3.4-2.83 5.04-4.62c1.63-1.8 3.14-3.57 4.52-5.33s2.62-3.36 3.72-4.81c1.1-1.44 2-2.45 2.68-3.02-1.32 2.58-2.06 5.08-2.25 7.49-.19 2.42.14 4.59.99 6.5s2.22 3.52 4.1 4.81c1.89 1.29 4.24 2.05 7.07 2.3 3.46.38 6.99.09 10.6-.85.28-.07.56-.15.84-.23-.57 2.02-1.11 4.07-1.61 6.13-1.76 7.19-3.12 14.28-4.09 21.25s-1.55 13.29-1.73 18.95c-.12 5.09.38 9.64 1.52 13.66q1.71 6.03 4.53 9.24c1.32 1.38 2.61 2.19 3.86 2.4 1.25.22 2.28.11 3.06-.33s1.21-1.09 1.27-1.94-.48-1.65-1.61-2.4c-3.58-2.32-6.13-5.37-7.64-9.14s-2.21-7.98-2.08-12.63c.06-3.9.59-8.01 1.6-12.34 1-4.34 2.31-8.66 3.95-12.96s3.49-8.5 5.56-12.58c2.07-4.09 4.24-7.89 6.5-11.41.64-1 1.27-1.96 1.91-2.88a84 84 0 0 1 4.82-6.41c2.23-2.67 4.31-4.76 6.26-6.27.69-.51 1.32-.93 1.89-1.25.83-.48 1.54-.75 2.12-.83.97-.13 1.68.13 2.12.76.44.62.67 1.51.71 2.64.03 1.13-.08 2.33-.33 3.58s-.57 2.48-.94 3.67c-.38 1.2-.76 2.14-1.13 2.83-4.96 2.01-8.54 3.92-10.74 5.7-2.2 1.8-3.4 3.32-3.62 4.58-.22 1.25.34 2.15 1.7 2.68 1.35.53 3.11.5 5.28-.1s4.52-1.85 7.06-3.78c2.54-1.92 4.88-4.63 7.02-8.16 2.57-1.07 5.23-2.01 7.96-2.83 2.73-.81 5.42-1.56 8.06-2.22.27-.07.55-.14.83-.2-.38 1.62-.55 3.2-.52 4.72.06 2.54.82 4.84 2.27 6.88s3.86 3.47 7.26 4.29c2.64.57 5.4.67 8.29.32s5.82-.99 8.77-1.94c2.95-.94 5.86-2.17 8.72-3.68a99 99 0 0 0 4.69-2.65c-.32 1.29-.63 2.59-.94 3.92-.85 3.68-1.52 7.3-2.03 10.89-.5 3.58-.79 7-.88 10.23-.1 3.24.18 6.13.8 8.68.63 2.54 1.68 4.61 3.16 6.22 1.48 1.6 3.48 2.56 5.99 2.87q4.155.465 9.66-2.88c3.67-2.23 7.47-5.27 11.4-9.1 3.92-3.84 7.75-8.18 11.49-13.06 3.73-4.87 7.08-9.79 10.03-14.75 1.63-2.71 3.24-5.36 4.8-7.97 1.57-2.61 3.14-5.1 4.71-7.5q1.23-1.695 1.32-2.97c.06-.85-.1-1.43-.48-1.75ZM401.61 92.6c2.67-6.23 5.51-11.75 8.52-16.6 2.14-3.39 3.96-5.94 5.46-7.64 1.51-1.7 2.54-2.5 3.11-2.41.57.1.58 1.1.05 3.01-.54 1.92-1.78 4.8-3.72 8.63-1.39 2.76-2.91 5.6-4.57 8.48-1.66 2.89-3.39 5.8-5.17 8.72-1.79 2.92-3.63 5.8-5.51 8.62q-2.82 4.245-5.46 8.01c2.2-6.34 4.63-12.63 7.29-18.85Zm-47.56 26.04q1.17-1.605 1.98-2.31.795-.705 1.32-.66c.34.03.61.23.8.61.25.57.22 1.28-.09 2.12-.32.85-.82 1.63-1.51 2.36-.69.72-1.49 1.32-2.4 1.79s-1.84.65-2.78.52c1-1.89 1.9-3.36 2.68-4.43"/>
+          </g>
+        </svg>
+      </a>
+      <nav class="hidden md:flex items-center gap-10">
+        <a href="index.html#inspirate" class="nav-link text-gray-500 hover:text-[#1d6277] transition-colors">Inspírate</a>
+        <a href="quiero-viajar.html" class="nav-link text-[#1d6277] transition-colors">Quiero Viajar</a>
+        <a href="index.html#contacto" class="nav-link text-gray-500 hover:text-[#1d6277] transition-colors">Contacto</a>
+        <a href="nosotros.html" class="nav-link text-gray-500 hover:text-[#1d6277] transition-colors">Nosotros</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero" style="margin-top: 72px">
+    <img
+      src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1920&q=85"
+      alt="Diseña tu viaje"
+      class="w-full h-full object-cover"
+      style="object-position: center 55%"
+    />
+    <div class="absolute inset-0" style="background: rgba(20,50,60,0.6)"></div>
+    <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+      <p class="text-white/60 text-xs uppercase tracking-[5px] mb-3">El primer paso</p>
+      <h1 class="text-white font-light uppercase tracking-[5px] text-3xl" style="text-shadow: 0 2px 20px rgba(0,0,0,0.4)">Diseña tu Viaje</h1>
+    </div>
+  </div>
+
+  <!-- INTRO TEXT -->
+  <section class="py-14 px-4 text-center">
+    <div class="max-w-2xl mx-auto">
+      <p class="text-gray-600 text-base leading-relaxed">
+        Cuéntanos todo acerca de tu viaje — mientras más detallado, mejor. Así podremos diseñar el itinerario que más se adapte a lo que estás buscando.
+      </p>
+      <p class="text-gray-400 text-sm mt-3">Los campos marcados con <span class="text-[#e92679] font-bold">*</span> son obligatorios.</p>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section class="pb-24 px-4">
+    <div class="max-w-3xl mx-auto">
+      <form id="contactForm" novalidate class="space-y-6">
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label class="form-label">Nombre y Apellido <span class="required-mark">*</span></label>
+            <input class="form-input" type="text" name="nombre" placeholder="Tu nombre completo" required />
+          </div>
+          <div>
+            <label class="form-label">Número de WhatsApp <span class="required-mark">*</span></label>
+            <input class="form-input" type="tel" name="whatsapp" placeholder="+52 000 000 0000" required />
+          </div>
+        </div>
+
+        <div>
+          <label class="form-label">Email <span class="required-mark">*</span></label>
+          <input class="form-input" type="email" name="email" placeholder="tu@email.com" required />
+        </div>
+
+        <div>
+          <label class="form-label">Destino <span class="required-mark">*</span></label>
+          <input class="form-input" type="text" name="destino" placeholder="¿A dónde sueñas ir?" required />
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label class="form-label">Fecha de salida <span class="required-mark">*</span></label>
+            <input class="form-input" type="text" name="fecha" placeholder="DD / MM / AAAA" required />
+          </div>
+          <div>
+            <label class="form-label">Número de viajeros <span class="required-mark">*</span></label>
+            <input class="form-input" type="number" name="viajeros" placeholder="2" min="1" required />
+          </div>
+        </div>
+
+        <div>
+          <label class="form-label">Tipo de viaje <span class="required-mark">*</span></label>
+          <div class="flex flex-wrap gap-2 mt-1">
+            <button type="button" class="trip-type-btn">Cultural</button>
+            <button type="button" class="trip-type-btn">Romántico</button>
+            <button type="button" class="trip-type-btn">Aventura</button>
+            <button type="button" class="trip-type-btn">Religioso</button>
+            <button type="button" class="trip-type-btn">Familiar</button>
+            <button type="button" class="trip-type-btn">Otro</button>
+          </div>
+          <input type="hidden" name="tipo_viaje" id="tipoViaje" />
+          <p class="text-[12px] text-[#e57373] mt-2" id="tipoError" style="display:none">Por favor selecciona el tipo de viaje.</p>
+        </div>
+
+        <div>
+          <label class="form-label">Descripción del viaje <span class="required-mark">*</span></label>
+          <textarea
+            class="form-input"
+            name="descripcion"
+            rows="5"
+            placeholder="Cuéntanos tus sueños de viaje, qué te inspira, qué experiencias no quieres perderte..."
+            required
+            style="padding: 14px 18px;"
+          ></textarea>
+        </div>
+
+        <div>
+          <label class="privacy-wrap">
+            <input type="checkbox" id="privacy" name="privacidad" required />
+            <span>He leído y acepto la <a href="#" class="text-[#1d6277] underline hover:text-[#154d61]">Política de Privacidad</a> <span class="required-mark">*</span></span>
+          </label>
+          <p class="text-[12px] text-[#e57373] mt-2" id="privacyError" style="display:none">Debes aceptar la Política de Privacidad para continuar.</p>
+        </div>
+
+        <!-- Submit -->
+        <div class="pt-2">
+          <button type="submit" class="btn-teal w-full text-center" style="padding: 16px; font-size: 13px">
+            ENVIAR MI SOLICITUD
+          </button>
+          <p class="text-center text-gray-400 text-sm mt-4">Responderemos en menos de 24 horas.</p>
+        </div>
+
+      </form>
+
+      <!-- Success message (hidden by default) -->
+      <div id="successMsg" style="display:none" class="text-center py-16">
+        <div class="w-16 h-16 rounded-full bg-[#1d6277]/10 flex items-center justify-center mx-auto mb-6">
+          <svg viewBox="0 0 32 32" class="w-8 h-8 text-[#1d6277]" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 16 l8 8 14-14"/></svg>
+        </div>
+        <h2 class="text-2xl font-light uppercase tracking-[4px] text-gray-800 mb-4">¡Solicitud enviada!</h2>
+        <p class="text-gray-500 text-base">Gracias por contactarnos. Te responderemos a la brevedad para comenzar a diseñar tu viaje.</p>
+        <a href="index.html" class="btn-outline-teal mt-8 inline-block">VOLVER AL INICIO</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background-color: #154d61" class="text-white py-16 px-8">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        <div class="md:col-span-1">
+          <a href="index.html" style="display:inline-block; line-height:0; margin-bottom: 1.5rem">
+            <svg preserveAspectRatio="xMidYMid meet" viewBox="0.011 0 437.031 217.89" xmlns="http://www.w3.org/2000/svg" style="width:120px; height:auto; display:block" aria-label="Ruta de papel" fill="white">
+              <g>
+                <path d="M122.97 86.46h-16.19L85.17 54.73h-9.29l.02 31.76H62.47L62.42.02 96.18 0c18.58-.01 26.37 13.79 26.37 27.47 0 12.55-6.39 25.11-22.33 26.75l22.74 32.24ZM75.86 12.31l.02 30.25h19.33c9.66-.02 13.55-7.68 13.55-15.08 0-7.28-3.77-15.19-13.06-15.18H75.87Z"/><path d="M171.76 27.82h12.93l.03 58.61h-12.93V77.9c-3.38 6.65-11.29 9.8-17.44 9.8-14.43 0-22.85-9.02-22.73-25.72l-.02-34.14h12.93l.02 32.63c0 9.66 5.16 14.68 12.18 14.68 7.53 0 15.06-4.15 15.05-15.82l-.02-31.5Z"/><path d="M215.44 27.79h12.43v10.66h-12.43l.03 47.95h-12.93l-.03-47.94h-10.54V27.8h10.54l-.01-22.22h12.93z"/><path d="M279.98 77.96c-4.01 6.4-12.17 9.67-19.7 9.68-15.69 0-29.75-11.91-29.77-30.61-.01-18.7 14.04-30.51 29.73-30.52 7.03 0 15.69 2.88 19.71 9.53v-8.28h12.8l.03 58.62h-12.8v-8.4Zm-18.2-2.87c9.54 0 18.07-6.66 18.06-18.21 0-11.42-9.3-17.82-18.08-17.81-9.66 0-17.94 7.04-17.94 17.83s8.29 18.19 17.96 18.19"/><path d="M336.61 82.87c-1.75 2.82-5.6 4.44-9.28 4.44-7.24 0-13.35-5.19-13.36-13.2 0-8.07 6.05-13.16 13.29-13.16 3.9 0 7.58 1.46 9.34 4.33V47.74h5.14l.02 39.03h-5.15v-3.89Zm-8.84-17.11c-4.75 0-8.54 3.31-8.54 8.29s3.79 8.44 8.55 8.44c4.7 0 8.77-3.09 8.76-8.45 0-5.41-4.47-8.28-8.77-8.28"/><path d="M374.28 75.97h-21.44c.62 4.29 4.02 6.89 8.55 6.88 3.17 0 6.05-1.36 7.58-3.9 1.36.59 3 1.03 4.41 1.62-2.26 4.49-7.01 6.72-12.16 6.72-7.52 0-13.52-5.24-13.53-13.26 0-8.01 5.99-13.11 13.51-13.11s13.13 5.08 13.13 13.09c0 .6 0 1.35-.06 1.95Zm-5.04-3.84c-.62-4.28-3.74-6.77-8.04-6.76-4.36 0-7.75 2.5-8.37 6.77h16.41Z"/><path d="M436.55 124.25c-.37-.32-.91-.33-1.6-.05-.69.29-1.38.99-2.07 2.13-1.44 2.14-2.87 4.38-4.29 6.74-1.41 2.36-2.84 4.76-4.29 7.21-1.95 3.27-4.05 6.63-6.31 10.09-2.25 3.46-4.61 6.79-7.06 9.99s-4.9 6.23-7.35 9.05c-2.45 2.83-4.83 5.23-7.16 7.22-2.33 1.98-4.5 3.46-6.54 4.43-2.05.98-3.85 1.24-5.42.8-2.38-.63-3.99-2.29-4.8-4.99q-1.23-4.05-.9-9.75c.22-3.81.81-7.93 1.78-12.4.97-4.46 2.08-8.75 3.34-12.86.66-2.17 1.32-4.23 1.97-6.18.59-1.75 1.17-3.41 1.75-4.99q.45-1.245.87-2.31c.83-2.17 1.53-3.85 2.09-5.03 2.07-2.71 4.3-5.66 6.69-8.86 2.39-3.21 4.8-6.57 7.26-10.09 2.44-3.52 4.83-7.1 7.16-10.75 2.32-3.65 4.42-7.23 6.3-10.75s3.5-6.91 4.85-10.18 2.27-6.29 2.78-9.05c.56-3.08.48-5.44-.24-7.07s-1.79-2.67-3.21-3.11c-1.42-.43-3-.33-4.76.34-1.76.66-3.43 1.78-5 3.35q-2.82 2.925-5.79 7.59c-1.97 3.11-3.97 6.67-5.98 10.66s-3.98 8.34-5.93 13.05c-1.95 4.72-3.83 9.63-5.65 14.76-1.82 5.12-3.56 10.35-5.22 15.7-1.67 5.34-3.18 10.62-4.56 15.84-.1.36-.2.73-.3 1.1-1.3.92-2.68 1.84-4.11 2.76a62 62 0 0 1-8.06 4.39c-2.73 1.23-5.37 2.08-7.91 2.55s-4.79.3-6.74-.51c-1.89-.75-3.19-1.88-3.91-3.39s-1.08-3.15-1.08-4.95.26-3.6.8-5.42c0-.02.01-.04.02-.06.52-1.79 1.1-3.41 1.72-4.84 1.08.03 2.14 0 3.2-.11 1.04-.1 2.06-.27 3.07-.51 2.04-.47 3.83-1.12 5.37-1.93 1.54-.82 2.75-1.77 3.63-2.88s1.23-2.28 1.04-3.54c-.13-1.07-.63-2.04-1.51-2.91s-2.17-1.51-3.87-1.88c-1.82-.38-3.57-.31-5.28.19-1.7.5-3.29 1.27-4.8 2.31a26.5 26.5 0 0 0-4.15 3.54c-1.25 1.32-2.33 2.61-3.2 3.87-1.48 2.1-2.74 4.41-3.77 6.9-.75.21-1.51.43-2.28.64-4.33 1.2-8.76 2.58-13.29 4.16 2.01-5.28 2.5-9.41 1.46-12.39-1.04-2.99-3.42-4.29-7.12-3.91-2.14.25-4.2.98-6.17 2.17-1.98 1.19-3.85 2.66-5.6 4.38a48 48 0 0 0-4.9 5.66 99 99 0 0 0-3.08 4.38c-.35.53-.69 1.04-1.02 1.56a105 105 0 0 0-3.16 5.23c-.18.32-.34.62-.5.9-.64 1.13-1.16 1.99-1.57 2.59.31-.76.61-1.52.92-2.26.87-2.13 1.74-4.19 2.61-6.19 1.34-3.06 2.67-5.96 4-8.7 2.51-5.15 4.64-9.28 6.4-12.35.57-.94.59-1.81.1-2.59-.51-.78-1.24-1.35-2.22-1.69-.97-.34-2.06-.36-3.25-.04s-2.2 1.13-3.01 2.45c-3.39 5.15-6.36 11.11-8.9 17.86-1.29 3.43-2.48 6.91-3.56 10.45-.96.37-1.91.68-2.87.96-3.11.91-5.8 1.12-8.06.62-1.32-.31-2.45-.91-3.39-1.79-.95-.88-1.61-2.09-1.99-3.62-.37-1.54-.44-3.48-.19-5.8.25-2.33.91-5.1 1.98-8.3.31-1 .27-1.89-.14-2.64-.41-.76-1.04-1.25-1.89-1.51-.85-.25-1.84-.2-2.97.14s-2.26 1.05-3.39 2.12c-.32.32-.97 1.01-1.98 2.08s-2.19 2.3-3.54 3.68c-1.34 1.38-2.76 2.83-4.24 4.33a75 75 0 0 1-4.19 4.01c-1.32 1.16-2.47 2.06-3.44 2.69s-1.58.75-1.84.38c-.32-.44-.46-1.05-.43-1.84.03-.78.15-1.6.33-2.45.19-.85.43-1.65.71-2.4.17-.46.32-.85.46-1.19.08-.22.17-.43.24-.6.65-1.56 1.46-3.12 2.44-4.66.36-.55.74-1.11 1.13-1.65 1.51-2.08 3.17-3.92 4.99-5.52 1.82-1.61 3.73-2.86 5.75-3.77s3.99-1.28 5.94-1.09c1.51.13 2.92.62 4.24 1.46 1.33.85 2.42 2.09 3.3 3.72.44 1.13 1.05 1.93 1.84 2.4s1.51.64 2.17.52c.67-.13 1.15-.51 1.46-1.14.32-.62.22-1.47-.28-2.54-1.07-2.26-2.64-3.97-4.72-5.13s-4.3-1.9-6.7-2.21c-3.95-.57-7.82-.28-11.59.85s-7.18 2.88-10.22 5.23c-3.05 2.36-5.59 5.2-7.63 8.53-.81 1.32-1.49 2.68-2.04 4.09-.52.15-1.04.29-1.56.44-4.34 1.2-8.77 2.58-13.29 4.16 2-5.28 2.49-9.41 1.45-12.39s-3.41-4.29-7.12-3.91c-2.14.25-4.2.98-6.17 2.17-1.98 1.19-3.85 2.66-5.6 4.38a48 48 0 0 0-4.9 5.66c-1.51 2.04-2.87 4.02-4.1 5.94a105 105 0 0 0-3.16 5.23c-.88 1.58-1.57 2.73-2.07 3.49 2.51-6.28 5.02-12 7.52-17.16 2.51-5.15 4.65-9.28 6.41-12.35.5-.88.52-1.72.04-2.54-.47-.81-1.18-1.38-2.12-1.7-8.55-4.39-17.18-7.57-25.88-9.55-8.71-1.97-17.41-3.12-26.11-3.43-8.71-.3-17.35.03-25.97 1.01-8.61.98-17.07 2.25-25.4 3.83q-12.48 2.37-24.45 5.01c-7.98 1.76-15.66 3.26-23.04 4.49-7.38 1.22-14.43 2.03-21.16 2.41-6.72.38-13-.05-18.85-1.31-.69-.56-1.44-.97-2.26-1.23-.81-.24-1.63-.31-2.45-.19-.82.13-1.57.37-2.26.71-.69.35-1.23.74-1.6 1.18s-.5.88-.37 1.32c.13.43.56.78 1.32 1.04 7.54 1.38 15.25 1.95 23.14 1.72 7.89-.22 15.85-.9 23.89-2.04 8.04-1.13 16.18-2.55 24.4-4.25 8.23-1.7 16.46-3.33 24.7-4.86q12.345-2.325 24.69-3.93a163 163 0 0 1 24.5-1.38c8.1.15 16.1 1.07 23.99 2.76s15.63 4.52 23.24 8.47l-.38.56c-3.39 5.15-6.36 11.11-8.9 17.86-2.54 6.76-4.69 13.73-6.44 20.93-1.76 7.19-3.12 14.28-4.09 21.25s-1.55 13.29-1.73 18.95c-.12 5.09.38 9.64 1.52 13.66q1.695 6.03 4.53 9.24c1.32 1.38 2.61 2.19 3.86 2.4q1.89.33 3.06-.33c.79-.44 1.21-1.09 1.27-1.94s-.47-1.65-1.61-2.4c-3.58-2.32-6.13-5.37-7.64-9.14s-2.21-7.98-2.08-12.63c.06-3.9.6-8.01 1.6-12.34 1-4.34 2.32-8.66 3.95-12.96s3.48-8.5 5.55-12.58c2.07-4.09 4.24-7.89 6.5-11.41 2.25-3.52 4.5-6.62 6.73-9.29s4.31-4.76 6.26-6.27c1.7-1.26 3.03-1.95 4.01-2.08s1.68.13 2.12.76c.44.62.68 1.51.71 2.64.04 1.13-.08 2.33-.33 3.58s-.56 2.48-.94 3.67c-.38 1.2-.76 2.14-1.13 2.83-4.96 2.01-8.54 3.92-10.73 5.7-2.2 1.8-3.41 3.32-3.63 4.58-.22 1.25.34 2.15 1.7 2.68 1.35.53 3.11.5 5.28-.1s4.52-1.85 7.06-3.78c2.54-1.92 4.88-4.63 7.02-8.16 2.58-1.07 5.23-2.01 7.96-2.83 2.73-.81 5.42-1.56 8.06-2.22l.25-.06c-.2.9-.35 1.82-.45 2.75-.25 1.95-.14 3.83.33 5.66.47 1.82 1.47 3.11 2.97 3.86 1.7.88 3.44 1.07 5.23.56s3.55-1.4 5.28-2.69 3.4-2.83 5.04-4.62c1.63-1.8 3.14-3.57 4.52-5.33s2.62-3.36 3.72-4.81c1.1-1.44 2-2.45 2.68-3.02-1.32 2.58-2.06 5.08-2.25 7.49-.19 2.42.14 4.59.99 6.5s2.22 3.52 4.1 4.81c1.89 1.29 4.24 2.05 7.07 2.3 3.46.38 6.99.09 10.6-.85.28-.07.56-.15.84-.23-.57 2.02-1.11 4.07-1.61 6.13-1.76 7.19-3.12 14.28-4.09 21.25s-1.55 13.29-1.73 18.95c-.12 5.09.38 9.64 1.52 13.66q1.71 6.03 4.53 9.24c1.32 1.38 2.61 2.19 3.86 2.4 1.25.22 2.28.11 3.06-.33s1.21-1.09 1.27-1.94-.48-1.65-1.61-2.4c-3.58-2.32-6.13-5.37-7.64-9.14s-2.21-7.98-2.08-12.63c.06-3.9.59-8.01 1.6-12.34 1-4.34 2.31-8.66 3.95-12.96s3.49-8.5 5.56-12.58c2.07-4.09 4.24-7.89 6.5-11.41.64-1 1.27-1.96 1.91-2.88a84 84 0 0 1 4.82-6.41c2.23-2.67 4.31-4.76 6.26-6.27.69-.51 1.32-.93 1.89-1.25.83-.48 1.54-.75 2.12-.83.97-.13 1.68.13 2.12.76.44.62.67 1.51.71 2.64.03 1.13-.08 2.33-.33 3.58s-.57 2.48-.94 3.67c-.38 1.2-.76 2.14-1.13 2.83-4.96 2.01-8.54 3.92-10.74 5.7-2.2 1.8-3.4 3.32-3.62 4.58-.22 1.25.34 2.15 1.7 2.68 1.35.53 3.11.5 5.28-.1s4.52-1.85 7.06-3.78c2.54-1.92 4.88-4.63 7.02-8.16 2.57-1.07 5.23-2.01 7.96-2.83 2.73-.81 5.42-1.56 8.06-2.22.27-.07.55-.14.83-.2-.38 1.62-.55 3.2-.52 4.72.06 2.54.82 4.84 2.27 6.88s3.86 3.47 7.26 4.29c2.64.57 5.4.67 8.29.32s5.82-.99 8.77-1.94c2.95-.94 5.86-2.17 8.72-3.68a99 99 0 0 0 4.69-2.65c-.32 1.29-.63 2.59-.94 3.92-.85 3.68-1.52 7.3-2.03 10.89-.5 3.58-.79 7-.88 10.23-.1 3.24.18 6.13.8 8.68.63 2.54 1.68 4.61 3.16 6.22 1.48 1.6 3.48 2.56 5.99 2.87q4.155.465 9.66-2.88c3.67-2.23 7.47-5.27 11.4-9.1 3.92-3.84 7.75-8.18 11.49-13.06 3.73-4.87 7.08-9.79 10.03-14.75 1.63-2.71 3.24-5.36 4.8-7.97 1.57-2.61 3.14-5.1 4.71-7.5q1.23-1.695 1.32-2.97c.06-.85-.1-1.43-.48-1.75ZM401.61 92.6c2.67-6.23 5.51-11.75 8.52-16.6 2.14-3.39 3.96-5.94 5.46-7.64 1.51-1.7 2.54-2.5 3.11-2.41.57.1.58 1.1.05 3.01-.54 1.92-1.78 4.8-3.72 8.63-1.39 2.76-2.91 5.6-4.57 8.48-1.66 2.89-3.39 5.8-5.17 8.72-1.79 2.92-3.63 5.8-5.51 8.62q-2.82 4.245-5.46 8.01c2.2-6.34 4.63-12.63 7.29-18.85Zm-47.56 26.04q1.17-1.605 1.98-2.31.795-.705 1.32-.66c.34.03.61.23.8.61.25.57.22 1.28-.09 2.12-.32.85-.82 1.63-1.51 2.36-.69.72-1.49 1.32-2.4 1.79s-1.84.65-2.78.52c1-1.89 1.9-3.36 2.68-4.43"/>
+              </g>
+            </svg>
+          </a>
+          <p class="text-white/60 text-xs leading-relaxed tracking-wide mt-4">DISEÑO DE VIAJES Y EXPERIENCIAS DE LUJO, A MEDIDA</p>
+        </div>
+        <div>
+          <p class="text-white/50 text-[10px] uppercase tracking-[4px] mb-5">Menú</p>
+          <ul class="space-y-3">
+            <li><a href="index.html#inspirate" class="text-white/80 hover:text-white text-sm transition-colors tracking-wide">Inspírate</a></li>
+            <li><a href="quiero-viajar.html" class="text-white/80 hover:text-white text-sm transition-colors tracking-wide">Quiero Viajar</a></li>
+            <li><a href="index.html#contacto" class="text-white/80 hover:text-white text-sm transition-colors tracking-wide">Contacto</a></li>
+            <li><a href="nosotros.html" class="text-white/80 hover:text-white text-sm transition-colors tracking-wide">Nosotros</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-white/50 text-[10px] uppercase tracking-[4px] mb-5">Síguenos</p>
+          <ul class="space-y-3">
+            <li><a href="#" class="text-white/80 hover:text-white text-sm transition-colors tracking-wide">Facebook</a></li>
+            <li><a href="#" class="text-white/80 hover:text-white text-sm transition-colors tracking-wide">Instagram</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-white/50 text-[10px] uppercase tracking-[4px] mb-5">Información</p>
+          <ul class="space-y-3">
+            <li><a href="mailto:viajesrutadepapel@gmail.com" class="text-white/80 hover:text-white text-sm transition-colors">viajesrutadepapel@gmail.com</a></li>
+            <li><span class="text-white/80 text-sm">+52 561 160 7541</span></li>
+            <li><span class="text-white/80 text-sm">+34 682 300 648</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-white/40 text-xs tracking-wide">© 2025 Ruta de Papel. Todos los derechos reservados.</p>
+        <a href="#" class="text-white/40 hover:text-white/60 text-xs tracking-wide transition-colors">Aviso de privacidad</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Trip type selection
+    const tripBtns = document.querySelectorAll('.trip-type-btn');
+    const tipoInput = document.getElementById('tipoViaje');
+    tripBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tripBtns.forEach(b => { b.classList.remove('active'); b.style.cssText = ''; });
+        btn.classList.add('active');
+        btn.style.borderColor = '#1d6277';
+        btn.style.background = '#1d6277';
+        btn.style.color = '#fff';
+        tipoInput.value = btn.textContent;
+        document.getElementById('tipoError').style.display = 'none';
+      });
+    });
+
+    // Form validation & submit
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      let valid = true;
+
+      // Check all required inputs
+      const required = this.querySelectorAll('input[required], textarea[required]');
+      required.forEach(field => {
+        field.style.borderColor = '';
+        if (!field.value.trim() || (field.type === 'checkbox' && !field.checked)) {
+          field.style.borderColor = '#e57373';
+          valid = false;
+        }
+      });
+
+      // Check privacy checkbox specifically
+      const privacy = document.getElementById('privacy');
+      if (!privacy.checked) {
+        document.getElementById('privacyError').style.display = 'block';
+        valid = false;
+      } else {
+        document.getElementById('privacyError').style.display = 'none';
+      }
+
+      // Check trip type
+      if (!tipoInput.value) {
+        document.getElementById('tipoError').style.display = 'block';
+        valid = false;
+      }
+
+      if (valid) {
+        // Show success state
+        this.style.display = 'none';
+        document.getElementById('successMsg').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        // Scroll to first error
+        const firstError = this.querySelector('input[style*="e57373"], textarea[style*="e57373"]');
+        if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+
+    // Clear error on input
+    document.querySelectorAll('.form-input').forEach(input => {
+      input.addEventListener('input', function() {
+        this.style.borderColor = '';
+      });
+    });
+    document.getElementById('privacy').addEventListener('change', function() {
+      if (this.checked) document.getElementById('privacyError').style.display = 'none';
+    });
+  </script>
+  <!-- ── Chat Widget ── -->
+  <div id="rdp-widget">
+    <button id="rdp-toggle" onclick="rdpToggle()">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+    </button>
+    <div id="rdp-box">
+      <div id="rdp-header">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div id="rdp-avatar">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#2596be"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+          </div>
+          <div>
+            <div style="font-weight:700;font-size:14px;">Ruta de Papel Agent</div>
+            <div style="font-size:11px;opacity:0.85;">● En línea</div>
+          </div>
+        </div>
+        <button onclick="rdpToggle()" style="background:none;border:none;color:white;font-size:20px;cursor:pointer;line-height:1;">✕</button>
+      </div>
+      <div id="rdp-messages">
+        <div style="display:flex;align-items:flex-end;gap:8px;">
+          <div class="rdp-bot-icon-wrap">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#2596be"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+          </div>
+          <div class="rdp-msg rdp-bot">¡Hola! Soy el asistente de Ruta de Papel. ¿En qué puedo ayudarte?</div>
+        </div>
+      </div>
+      <div id="rdp-input-area">
+        <input id="rdp-input" type="text" placeholder="Escribe tu pregunta..." onkeydown="if(event.key==='Enter') rdpSend()" />
+        <button onclick="rdpSend()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    #rdp-widget { position: fixed; bottom: 24px; right: 24px; z-index: 9999; font-family: sans-serif; }
+    #rdp-toggle { width: 60px; height: 60px; border-radius: 50%; background: #2596be; border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; margin-left: auto; transition: transform 0.2s; }
+    #rdp-toggle:hover { transform: scale(1.08); }
+    #rdp-box { display: none; flex-direction: column; width: 340px; height: 500px; background: white; border-radius: 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.2); overflow: hidden; margin-bottom: 12px; }
+    #rdp-header { background: #2596be; color: white; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; }
+    #rdp-avatar { width: 38px; height: 38px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .rdp-bot-icon-wrap { width: 28px; height: 28px; border-radius: 50%; background: #e8f4fb; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    #rdp-messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+    .rdp-msg { max-width: 78%; padding: 10px 14px; border-radius: 12px; font-size: 14px; line-height: 1.5; }
+    .rdp-bot { background: #f0f7fb; color: #222; align-self: flex-start; border-bottom-left-radius: 4px; }
+    .rdp-user { background: #2596be; color: white; align-self: flex-end; border-bottom-right-radius: 4px; }
+    .rdp-typing { color: #999; font-size: 13px; font-style: italic; }
+    #rdp-input-area { display: flex; padding: 12px; border-top: 1px solid #eee; gap: 8px; }
+    #rdp-input { flex: 1; border: 1px solid #ddd; border-radius: 8px; padding: 10px 12px; font-size: 14px; outline: none; }
+    #rdp-input:focus { border-color: #2596be; }
+    #rdp-input-area button { background: #2596be; border: none; border-radius: 8px; width: 42px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  </style>
+
+  <script>
+    const RDP_SESSION = crypto.randomUUID();
+    const RDP_WEBHOOK = 'https://n8n-jcg4epwgyztosnmbxghhwvdv.34.133.34.116.sslip.io/webhook/RutadePapel-agent';
+    function rdpToggle() {
+      const box = document.getElementById('rdp-box');
+      box.style.display = box.style.display === 'flex' ? 'none' : 'flex';
+    }
+    async function rdpSend() {
+      const input = document.getElementById('rdp-input');
+      const msg = input.value.trim();
+      if (!msg) return;
+      input.value = '';
+      rdpAppend(msg, 'rdp-user', false);
+      const typing = rdpAppend('Escribiendo...', 'rdp-bot rdp-typing', true);
+      try {
+        const res = await fetch(RDP_WEBHOOK, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: msg, sessionId: RDP_SESSION })
+        });
+        const data = await res.json();
+        typing.remove();
+        rdpAppend(data.output || 'No pude obtener una respuesta.', 'rdp-bot', true);
+      } catch {
+        typing.remove();
+        rdpAppend('Error al conectar. Intenta de nuevo.', 'rdp-bot', true);
+      }
+    }
+    function rdpParseMarkdown(text) {
+      return text
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.+?)\*/g, '<em>$1</em>')
+        .replace(/^\* /gm, '• ')
+        .replace(/\n/g, '<br>');
+    }
+    function rdpAppend(text, classes, withIcon) {
+      const msgs = document.getElementById('rdp-messages');
+      const wrapper = document.createElement('div');
+      wrapper.style.cssText = 'display:flex;align-items:flex-end;gap:8px;';
+      if (withIcon) {
+        const icon = document.createElement('div');
+        icon.style.cssText = 'width:28px;height:28px;border-radius:50%;background:#e8f4fb;display:flex;align-items:center;justify-content:center;flex-shrink:0;';
+        icon.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="#2596be"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>';
+        wrapper.appendChild(icon);
+      }
+      const div = document.createElement('div');
+      div.className = 'rdp-msg ' + classes;
+      div.innerHTML = rdpParseMarkdown(text);
+      wrapper.appendChild(div);
+      msgs.appendChild(wrapper);
+      msgs.scrollTop = msgs.scrollHeight;
+      return wrapper;
+    }
+  </script>
+
+</body>
+</html>
